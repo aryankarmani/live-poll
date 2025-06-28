@@ -6,6 +6,7 @@ const PollHistory = () => {
   const [polls, setPolls] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchPolls();
@@ -14,7 +15,7 @@ const PollHistory = () => {
   const fetchPolls = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/polls');
+      const response = await axios.get(`${API_BASE_URL}/polls`);
       setPolls(response.data.data);
     } catch (err) {
       setError('Failed to fetch poll history');
